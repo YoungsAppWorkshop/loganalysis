@@ -12,7 +12,8 @@ JOIN
           count(log.path) AS num_of_requests
    FROM articles
    LEFT JOIN log ON log.path LIKE '%' || articles.slug
-   GROUP BY articles.slug) subqr ON a.slug = subqr.slug
+   GROUP BY articles.slug) subqr
+ON a.slug = subqr.slug
 ORDER BY subqr.num_of_requests DESC;
 
 -- 2. Who are the most popular article authors of all time?
@@ -25,7 +26,8 @@ LEFT JOIN
   (SELECT sum(num_of_requests) AS views,
           author
    FROM article_popularity
-   GROUP BY author) p ON a.id = p.author
+   GROUP BY author) p
+ON a.id = p.author
 ORDER BY total_views DESC;
 
 -- 3. On which days did more than 1% of requests lead to errors?

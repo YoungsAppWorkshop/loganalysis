@@ -38,7 +38,8 @@ JOIN
           count(log.path) AS num_of_requests
    FROM articles
    LEFT JOIN log ON log.path LIKE '%' || articles.slug
-   GROUP BY articles.slug) subqr ON a.slug = subqr.slug
+   GROUP BY articles.slug) subqr
+ON a.slug = subqr.slug
 ORDER BY subqr.num_of_requests DESC;
 
 -- 2. 가장 인기있는 작가는 누구인가?
@@ -51,7 +52,8 @@ LEFT JOIN
   (SELECT sum(num_of_requests) AS views,
           author
    FROM article_popularity
-   GROUP BY author) p ON a.id = p.author
+   GROUP BY author) p
+ON a.id = p.author
 ORDER BY total_views DESC;
 
 -- 3. 클라이언트로부터의 요청 중 1% 이상 에러가 발생한 날은 언제인가?
