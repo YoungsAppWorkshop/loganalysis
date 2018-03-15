@@ -1,18 +1,19 @@
 # Project: Logs Analysis
 
-`logs_analysis.py` is a reporting tool that connect to a _PostgreSQL_ database, execute SQL queries, and produce a plain text report file.
+`logs_analysis.py` is a command line reporting tool that connects to a _PostgreSQL_ database, execute SQL queries, and produce a plain text report file. The database contains newspaper articles, as well as the web server log for the site. The log has a database row for each time a reader loaded a web page. Using that information, `logs_analysis.py` answers questions about the site's user activity like what kind of articles the site's readers like. This project is one of assignments for the [Udacity's Full Stack Web Developer Nanodegree program](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004).
 
-- 한글 리드미(README Korean) 파일: [README_ko.md](https://github.com/YoungsAppWorkshop/logsanalysis/blob/master/README_ko.md)
+- 한글 리드미(README Korean) 파일: [README_ko.md](/README_ko.md)
 
 ## How to Start
 
-The [_PostgreSQL_](https://www.postgresql.org) database and support software needed for this project to work properly.
+The [_PostgreSQL_](https://www.postgresql.org) database and support software needed for this project to work properly. For testing, pre-configured [Vagrant](https://www.vagrantup.com/docs/installation/) machine is prepared [here](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f73b_vagrantfile/vagrantfile).
 
-1. Clone the github repository: `git clone https://github.com/YoungsAppWorkshop/logsanalysis`
-2. [Download logs data](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip) file, unzip it and store the `newsdata.sql` file in the directory.
-3. Load the data into your local database: `psql -d YOUR_DATABASE_NAME -f newsdata.sql`
-4. Create views: `psql -d YOUR_DATABASE_NAME -f views.sql`
-5. Run the logs analysis script: `python3 logs_analysis.py`
+1. Install the pre-configured Vagrant machine using the vagrant file.
+2. In the Vagrant machine, clone the github repository: `git clone https://github.com/YoungsAppWorkshop/logsanalysis`
+3. [Download logs data](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip) file, unzip it and store the `newsdata.sql` file in the directory.
+4. Load the data into your local database: `psql -d news -f newsdata.sql`
+5. Create views: `psql -d news -f views.sql`
+6. Run the logs analysis script: `python3 logs_analysis.py`
 
 ## Structure
 ```bash
@@ -78,6 +79,8 @@ FROM
    GROUP BY log_date ) subqr;
 ```
 
+## Attributions
+* The pre-configured Vagrant file is contributed by [Udacity's Full Stack Web Developer Nanodegree program](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004).
+
 ## License
-This is a public domain work, dedicated using
-[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+[MIT Licensed](/LICENSE)
